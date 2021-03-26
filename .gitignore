@@ -1,3 +1,4 @@
 .vscode
-token.py
-
+apitoken.py
+__pycache__
+scraps
