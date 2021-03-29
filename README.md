@@ -9,6 +9,7 @@ Contributions are very welcome as the bot doesn't do much ATM and I doubt I'll h
 - Auto reacts
 - Leaderboard
 - Counting
+- Social Credit System
 - Admin panel
 - Spontaneously praises matt
-- Basically anything we currently use carl/mee6 for
+- Starboard
