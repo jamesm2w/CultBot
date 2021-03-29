@@ -1,7 +1,7 @@
 import discord.ext.commands as commands
 
 
-class Leaderboard(commands.Cog):
+class Example(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
@@ -12,5 +12,4 @@ class Leaderboard(commands.Cog):
 
 
 def setup(bot):
-    # load pickle file from disk
-    bot.add_cog(Leaderboard(bot))
+    bot.add_cog(Example(bot))
