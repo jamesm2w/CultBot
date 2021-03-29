@@ -3,7 +3,8 @@ from apitoken import TOKEN
 from typing import List
 
 EXTENSIONS = [
-    "cogs.example"
+    "cogs.example",
+    "cogs.react"
 ]
 
 
