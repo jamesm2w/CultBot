@@ -1,10 +1,10 @@
 from discord.ext import commands
 from apitoken import TOKEN
-from typing import List
 
 EXTENSIONS = [
     "cogs.example",
-    "cogs.react"
+    "cogs.react",
+    "cogs.praise"
 ]
 
 
