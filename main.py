@@ -4,7 +4,8 @@ from apitoken import TOKEN
 EXTENSIONS = [
     "cogs.example",
     "cogs.react",
-    "cogs.praise"
+    "cogs.praise",
+    "cogs.someone"
 ]
 
 
