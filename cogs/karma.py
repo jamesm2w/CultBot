@@ -1,6 +1,5 @@
 import discord
 import discord.ext.commands as commands
-from typing import Dict
 import json
 
 UPVOTE = None
@@ -9,7 +8,7 @@ DOWNVOTE = None  # brendan plz
 
 class Karma(commands.Cog):
 
-    users: Dict[int, int]
+    users: dict[int, int]
     bot: commands.Bot
 
     def __init__(self, bot):
@@ -43,7 +42,7 @@ class Karma(commands.Cog):
         with open("data/karma.json", "w+") as f:
             json.dump(self.users, f)
 
-    def load_file(self) -> Dict[int, int]:
+    def load_file(self) -> dict[int, int]:
         try:
             with open("data/karma.json", "r") as f:
                 return json.load(f)

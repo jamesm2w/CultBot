@@ -3,7 +3,6 @@ import discord
 from util import admin_command
 import json
 import re
-from typing import Dict
 
 # For now, only supports custom emoji as reactions due to differences in the way
 # discord emoji and unicode emoji are handled.
@@ -12,7 +11,7 @@ from typing import Dict
 
 class React(commands.Cog):
 
-    reacts: Dict[str, int]
+    reacts: dict[str, int]
 
     def __init__(self, bot):
         self.bot = bot
@@ -50,7 +49,7 @@ class React(commands.Cog):
                 emoji: discord.Emoji = await message.guild.fetch_emoji(self.reacts[regex])
                 await message.add_reaction(emoji)
 
-    def load_reacts(self) -> Dict[str, int]:
+    def load_reacts(self) -> dict[str, int]:
         try:
             with open("data/reacts.json", "r") as f:
                 return json.load(f)

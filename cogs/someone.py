@@ -3,14 +3,13 @@ import discord
 import random
 import discord.ext.commands as commands
 import discord
-from typing import List, Dict
 
 
 class Someone(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-        self.cache: Dict[discord.TextChannel, List[discord.User]] = {}
+        self.cache: dict[discord.TextChannel, list[discord.User]] = {}
 
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
@@ -22,7 +21,7 @@ class Someone(commands.Cog):
         if channel in self.cache.keys():
             return self.cache[channel]
         else:
-            users: List[discord.User] = []
+            users: list[discord.User] = []
             async for msg in channel.history(limit=10000):
                 users.append(msg.author)
             self.cache[channel] = users
