@@ -1,8 +1,6 @@
-from typing import Text
 import discord
 import random
 import discord.ext.commands as commands
-import discord
 
 
 class Someone(commands.Cog):
@@ -14,6 +12,7 @@ class Someone(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
         if(message.content.startswith("@someone")):
+            # weighted random choice from authors of last 10k messages
             user: discord.User = random.choice(await self.get_recent_users(message.channel))
             await message.reply(user.mention)
 
@@ -22,8 +21,11 @@ class Someone(commands.Cog):
             return self.cache[channel]
         else:
             users: list[discord.User] = []
+            # takes a while, iterates over 10k messages O(horrible)
             async for msg in channel.history(limit=10000):
                 users.append(msg.author)
+
+            # cache result for speed
             self.cache[channel] = users
             return users
 

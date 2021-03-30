@@ -2,8 +2,10 @@ import discord
 import discord.ext.commands as commands
 import json
 
+# TODO finish this
+
 UPVOTE = None
-DOWNVOTE = None  # brendan plz
+DOWNVOTE = None
 
 
 class Karma(commands.Cog):
