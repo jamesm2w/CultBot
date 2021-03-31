@@ -16,6 +16,10 @@ class Someone(commands.Cog):
             user: discord.User = random.choice(await self.get_recent_users(message.channel))
             await message.reply(user.mention)
 
+        # DO NOT UNCOMMENT !
+        # elif(message.content.startswith("@everyone")):
+        #    await message.reply(" ".join(m.mention for m in message.channel.members))
+
     async def get_recent_users(self, channel: discord.TextChannel):
         if channel in self.cache.keys():
             return self.cache[channel]
