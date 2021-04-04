@@ -29,16 +29,25 @@ class Karma(commands.Cog):
         if payload.guild_id is None:
             return
         if payload.emoji.id == DOWNVOTE or payload.emoji.id == UPVOTE:
-            channel: discord.TextChannel = await self.bot.fetch_channel(payload.channel_id)
-            message: discord.Message = await channel.get_partial_message(payload.message_id).fetch()
-            user: discord.User = await message.author
+            message: discord.Message = await self.bot.get_channel(payload.channel_id).fetch_message(payload.message_id)
+            user_id = message.author.id
             if payload.emoji.id == UPVOTE:
-                pass
+                self.users[user_id] += 1
             elif payload.emoji.id == DOWNVOTE:
-                pass
+                self.users[user_id] -= 1
+            self.update_file()
 
     async def on_raw_reaction_remove(self, payload: discord.RawReactionActionEvent):
-        pass
+        if payload.guild_id is None:
+            return
+        if payload.emoji.id == DOWNVOTE or payload.emoji.id == UPVOTE:
+            message: discord.Message = await self.bot.get_channel(payload.channel_id).fetch_message(payload.message_id)
+            user_id = message.author.id
+            if payload.emoji.id == UPVOTE:
+                self.users[user_id] -= 1
+            elif payload.emoji.id == DOWNVOTE:
+                self.users[user_id] += 1
+            self.update_file()
 
     def update_file(self):
         with open("data/karma.json", "w+") as f:
