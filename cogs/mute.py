@@ -23,7 +23,7 @@ class Mute(commands.Cog):
             await ctx.reply("nice try")
             return
         # cant mute self
-        if user.id == ctx.author:
+        if user.id == ctx.author.id:
             await ctx.reply("why are you trying to mute yourself")
             return
         # cant mute already muted
@@ -70,7 +70,7 @@ class Mute(commands.Cog):
                 else:
                     time_remaining = self.timestamp(bantime - time.time()) + " remaining."
 
-                embed.add_field(name=user.name, value=time_remaining)
+                embed.add_field(name=user, value=time_remaining)
 
         await ctx.send(embed=embed)
 
