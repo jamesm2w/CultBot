@@ -47,7 +47,7 @@ class Karma(commands.Cog):
         topten: list[int] = sorted(self.users.keys(), key=self.users.get)
         embed: discord.Embed = discord.Embed(title="Top 10 Users by Karma", color=0x8b01e6)
         for usr in topten:
-            embed.add_field(name=self.bot.get_user(usr), value=self.users[usr], inline=True)
+            embed.add_field(name=self.bot.get_user(usr), value=self.users[usr])
         await ctx.reply(embed=embed)
 
     # get bottom users
@@ -56,7 +56,7 @@ class Karma(commands.Cog):
         topten: list[int] = sorted(self.users.keys(), key=self.users.get, reverse=True)
         embed: discord.Embed = discord.Embed(title="Bottom 10 Users by Karma", color=0x8b01e6)
         for usr in topten:
-            embed.add_field(name=self.bot.get_user(usr), value=self.users[usr], inline=True)
+            embed.add_field(name=self.bot.get_user(usr), value=self.users[usr])
         await ctx.reply(embed=embed)
 
     # track reacts for +/- credits for that user

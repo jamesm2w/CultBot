@@ -61,7 +61,7 @@ class Mute(commands.Cog):
         embed: discord.Embed = discord.Embed(title="Muted Users", color=0x8b01e6)
 
         if self.muted_users == {}:
-            embed.add_field(name="No users are currently muted.", value="Looks like everyones behaving for now.", inline=True)
+            embed.add_field(name="No users are currently muted.", value="Looks like everyones behaving for now.")
         else:
             for user, bantime in self.muted_users.items():
 
@@ -70,7 +70,7 @@ class Mute(commands.Cog):
                 else:
                     time_remaining = self.timestamp(bantime - time.time()) + " remaining."
 
-                embed.add_field(name=user.name, value=time_remaining, inline=True)
+                embed.add_field(name=user.name, value=time_remaining)
 
         await ctx.send(embed=embed)
 
