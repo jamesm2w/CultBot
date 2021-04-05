@@ -37,10 +37,9 @@ class Karma(commands.Cog):
     # get credit @user
     @commands.Command
     async def karma(self, ctx: commands.Context, user: Optional[discord.Member]):
-        if user.id in self.users:
-            await ctx.reply(f"User {user.name} currently has {self.users[user.id]} karma")
-        elif user is None:
+        if user is None:
             user = ctx.author
+        if user.id in self.users:
             await ctx.reply(f"User {user.name} currently has {self.users[user.id]} karma")
         else:
             await ctx.reply(f"User {user.name} currently has 0 karma")
@@ -51,7 +50,8 @@ class Karma(commands.Cog):
         topten: list[int] = sorted(self.users.keys(), key=self.users.get, reverse=True)
         embed: discord.Embed = discord.Embed(title="Top 10 Users by Karma", color=0x8b01e6)
         for usr in topten:
-            await embed.add_field(name=self.bot.fetch_user(usr), value=self.users[usr])
+            name = await self.bot.fetch_user(usr)
+            embed.add_field(name=name, value=self.users[usr])
         await ctx.reply(embed=embed)
 
     # get bottom users
@@ -60,7 +60,8 @@ class Karma(commands.Cog):
         topten: list[int] = sorted(self.users.keys(), key=self.users.get)
         embed: discord.Embed = discord.Embed(title="Bottom 10 Users by Karma", color=0x8b01e6)
         for usr in topten:
-            await embed.add_field(name=self.bot.fetch_user(usr), value=self.users[usr])
+            name = await self.bot.fetch_user(usr)
+            embed.add_field(name=name, value=self.users[usr])
         await ctx.reply(embed=embed)
 
     # track reacts for +/- credits for that user
