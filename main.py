@@ -7,7 +7,8 @@ EXTENSIONS = [
     "cogs.react",
     "cogs.praise",
     "cogs.someone",
-    "cogs.mute"
+    "cogs.mute",
+    "cogs.karma"
 ]
 
 intents = discord.Intents.default()
