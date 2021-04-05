@@ -44,7 +44,7 @@ class Karma(commands.Cog):
     # get top users
     @commands.Command
     async def topkarma(self, ctx: commands.Context):
-        topten: list[int] = sorted(self.users.keys(), key=self.users.get)
+        topten: list[int] = sorted(self.users.keys(), key=self.users.get, reverse=True)
         embed: discord.Embed = discord.Embed(title="Top 10 Users by Karma", color=0x8b01e6)
         for usr in topten:
             embed.add_field(name=self.bot.get_user(usr), value=self.users[usr])
@@ -53,7 +53,7 @@ class Karma(commands.Cog):
     # get bottom users
     @commands.Command
     async def bottomkarma(self, ctx: commands.Context):
-        topten: list[int] = sorted(self.users.keys(), key=self.users.get, reverse=True)
+        topten: list[int] = sorted(self.users.keys(), key=self.users.get)
         embed: discord.Embed = discord.Embed(title="Bottom 10 Users by Karma", color=0x8b01e6)
         for usr in topten:
             embed.add_field(name=self.bot.get_user(usr), value=self.users[usr])
