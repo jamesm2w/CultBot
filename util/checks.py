@@ -12,5 +12,5 @@ def admin_command():
 
 def no_general():
     async def predicate(ctx: commands.Context):
-        return ctx.channel == 763710886052495364
+        return ctx.channel.id != GENERAL_ID
     return commands.check(predicate)
