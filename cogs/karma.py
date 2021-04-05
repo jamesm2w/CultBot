@@ -73,6 +73,8 @@ class Karma(commands.Cog):
         if payload.emoji.id in UPVOTES or payload.emoji.id in DOWNVOTES:
             message: discord.Message = await self.bot.get_channel(payload.channel_id).fetch_message(payload.message_id)
             user_id = message.author.id
+            if(message.author.id == payload.user_id):
+                return
             if payload.emoji.id in UPVOTES:
                 self.upvote(user_id)
             elif payload.emoji.id in DOWNVOTES:
@@ -85,6 +87,8 @@ class Karma(commands.Cog):
         if payload.emoji.id in UPVOTES or payload.emoji.id in DOWNVOTES:
             message: discord.Message = await self.bot.get_channel(payload.channel_id).fetch_message(payload.message_id)
             user_id = message.author.id
+            if(message.author.id == payload.user_id):
+                return
             if payload.emoji.id in UPVOTES:
                 self.downvote(user_id)
             elif payload.emoji.id in DOWNVOTES:
