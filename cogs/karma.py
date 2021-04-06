@@ -37,7 +37,6 @@ class Karma(commands.Cog):
 
     # get credit @user
     @commands.command()
-    @no_general()
     async def karma(self, ctx: commands.Context, user: Optional[discord.Member]):
         if user is None:
             user = ctx.author
@@ -48,7 +47,6 @@ class Karma(commands.Cog):
 
     # get top users
     @commands.command()
-    @no_general()
     async def topkarma(self, ctx: commands.Context):
         topten: list[int] = sorted(self.users.keys(), key=self.users.get, reverse=True)
         embed: discord.Embed = discord.Embed(title="Top 10 Users by Karma", color=0x8b01e6)
@@ -59,7 +57,6 @@ class Karma(commands.Cog):
 
     # get bottom users
     @commands.command()
-    @no_general()
     async def bottomkarma(self, ctx: commands.Context):
         bottomten: list[int] = sorted(self.users.keys(), key=self.users.get)
         embed: discord.Embed = discord.Embed(title="Bottom 10 Users by Karma", color=0x8b01e6)
