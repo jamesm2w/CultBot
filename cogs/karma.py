@@ -36,7 +36,7 @@ class Karma(commands.Cog):
         self.write.start()
 
     # get credit @user
-    @commands.Command
+    @commands.command()
     @no_general()
     async def karma(self, ctx: commands.Context, user: Optional[discord.Member]):
         if user is None:
@@ -47,7 +47,7 @@ class Karma(commands.Cog):
             await ctx.reply(f"User {user.name} currently has 0 karma")
 
     # get top users
-    @commands.Command
+    @commands.command()
     @no_general()
     async def topkarma(self, ctx: commands.Context):
         topten: list[int] = sorted(self.users.keys(), key=self.users.get, reverse=True)
@@ -58,7 +58,7 @@ class Karma(commands.Cog):
         await ctx.reply(embed=embed)
 
     # get bottom users
-    @commands.Command
+    @commands.command()
     @no_general()
     async def bottomkarma(self, ctx: commands.Context):
         bottomten: list[int] = sorted(self.users.keys(), key=self.users.get)
@@ -119,7 +119,7 @@ class Karma(commands.Cog):
     def load_file(self) -> dict[int, int]:
         try:
             with open("data/karma.json", "r") as f:
-                return json.load(f)
+                return {int(k): v for (k, v) in json.load(f).items()}
         except FileNotFoundError:
             return {}
 
