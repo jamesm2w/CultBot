@@ -5,10 +5,10 @@ import discord
 
 CHANNEL_ID = 763722286120566794
 
-MESSAGES = [
-    "Amatt"
-    # TODO - add some more
-]
+MESSAGES = {
+    "Amatt": 99,
+    "Acharis": 1
+}
 
 
 class Praise(commands.Cog):
@@ -28,7 +28,7 @@ class Praise(commands.Cog):
 
     async def send_random_message(self):
         channel: discord.TextChannel = self.bot.get_channel(CHANNEL_ID)
-        msg = random.choice(MESSAGES)
+        msg = random.choices(MESSAGES.keys(), weights=MESSAGES.values())
         await channel.send(msg)
 
 
