@@ -21,8 +21,9 @@ class Birthday(commands.Cog):
             await self.wish_happy_birthday()
 
     async def wish_happy_birthday(self):
-        channel = self.bot.get_channel(CHANNEL_ID)
-        user = random.choice(self.bot.get_guild(GUILD_ID).members)
+        channel = await self.bot.fetch_channel(CHANNEL_ID)
+        guild = await self.bot.fetch_guild(GUILD_ID)
+        user = random.choice(guild.members)
         await channel.send(f"It is {user.mention}'s birthday today! Be sure to wish {user.mention} a happy birthday!")
         await channel.send("🥳")
 
