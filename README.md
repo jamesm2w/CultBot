@@ -7,6 +7,7 @@ Contributions are very welcome as the bot doesn't do much ATM and I doubt I'll h
 ## TODO
 
 - Fix praise
+- Redo Mute
 - Fix birthday thing
 - Social Credit System Improvements
 - \search

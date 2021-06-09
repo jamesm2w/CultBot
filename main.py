@@ -1,15 +1,13 @@
 from discord.ext import commands
-from apitoken import TOKEN
+import apitoken
 import discord
+import argparse
 
 EXTENSIONS = [
     "cogs.example",
     "cogs.react",
-    "cogs.praise",
     "cogs.someone",
-    "cogs.mute",
     "cogs.karma",
-    "cogs.birthday"
 ]
 
 intents = discord.Intents.default()
@@ -23,4 +21,7 @@ for ext in EXTENSIONS:
     bot.load_extension(ext)
 
 if __name__ == "__main__":
-    bot.run(TOKEN)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-t", "--test", action="store_true")
+    token = apitoken.TEST_TOKEN if parser.parse_args().test else apitoken.TOKEN
+    bot.run(token)
