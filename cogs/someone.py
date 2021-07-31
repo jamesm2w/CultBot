@@ -11,8 +11,11 @@ class Someone(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
+        if not isinstance(message.channel, discord.TextChannel):
+            raise TypeError
+
         if(message.content.startswith("@someone")):
-            # weighted random choice from authors of last 10k messages
+            # weighted random choice from authors of last 1k messages
             user: discord.User = random.choice(await self.get_recent_users(message.channel))
             await message.reply(user.mention)
 
@@ -24,13 +27,11 @@ class Someone(commands.Cog):
         if channel in self.cache.keys():
             return self.cache[channel]
         else:
-            users: list[discord.User] = []
-            # takes a while, iterates over 10k messages O(horrible)
-            async for msg in channel.history(limit=10000):
-                users.append(msg.author)
+            messages = await channel.history(limit=1000).flatten()
+            users = map(lambda m: m.author, messages)
 
             # cache result for speed
-            self.cache[channel] = users
+            self.cache[channel] = list(users)
             return users
 
 

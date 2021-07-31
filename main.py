@@ -5,7 +5,6 @@ import argparse
 
 EXTENSIONS = [
     "cogs.example",
-    "cogs.react",
     "cogs.someone",
     "cogs.karma",
 ]
