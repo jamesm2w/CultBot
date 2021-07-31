@@ -4,3 +4,4 @@ __pycache__
 scraps
 typings
 data
+.mypy_cache
