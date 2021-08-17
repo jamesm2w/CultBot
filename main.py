@@ -1,5 +1,4 @@
 from discord.ext import commands
-import apitoken
 import discord
 import os
 import argparse
@@ -23,5 +22,9 @@ for ext in EXTENSIONS:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-e", "--env_token", action="store_true")
-    token = apitoken.TOKEN if not parser.parse_args().env_token else os.environ['BOT_TOKEN']
+    if parser.parse_args().env_token:
+        token = os.environ['BOT_TOKEN']
+    else:
+        import apitoken
+        token = apitoken.TOKEN
     bot.run(token)
