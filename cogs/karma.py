@@ -1,4 +1,6 @@
 from typing import Optional
+
+from discord import message
 from util.checks import no_general
 import discord
 import discord.ext.commands as commands
@@ -7,7 +9,9 @@ import discord.ext.tasks as tasks
 from random import randint
 import asyncio
 
-# TODO finish this
+
+# the emojis configured for altering karma
+# PR if anyone wants to change
 
 UPVOTES = [
     814600173287243796  # :thistbh:
@@ -15,14 +19,15 @@ UPVOTES = [
     , 783792678751436830  # :leopog:
     , 763731230339366922  # :matt:
     , 775423225400262656  # :kekw:
+    , 834165255390101554  # :salute:
+    , 819251214877065267  # :pog:
 
 ]
 DOWNVOTES = [
     770970521566445599  # :notthistbh:
     , 775670477397032961  # :mikeangry:
     , 793614239641239604  # :skiros:
-    , 812273395214450689  # :yaoi:
-
+    , 805047782716342282  # :sus:
 ]
 
 
@@ -32,7 +37,6 @@ class Karma(commands.Cog):
         self.bot: commands.Bot = bot
         self.users: dict[int, int] = self.load_file()
         self.modified = True
-        self.muted: list[discord.Member] = []
         self.write.start()
 
     # get credit @user
@@ -48,21 +52,18 @@ class Karma(commands.Cog):
     # get top users
     @commands.command()
     async def topkarma(self, ctx: commands.Context):
-        topten: list[int] = sorted(self.users.keys(), key=self.users.get, reverse=True)
-        embed: discord.Embed = discord.Embed(title="Top 10 Users by Karma", color=0x8b01e6)
-        for usr in topten[:10]:
-            name = await self.bot.fetch_user(usr)
-            embed.add_field(name=name, value=self.users[usr])
+        topten: list[int] = sorted(self.users.keys(), key=lambda x: self.users[x], reverse=True)[:10]
+
+        message = "\n".join([f"{await self.bot.fetch_user(usrid)} : {self.users[usrid]}" for usrid in topten])
+        embed: discord.Embed = discord.Embed(title="Top 10 Users by Karma", description=message, color=0x8b01e6)
         await ctx.reply(embed=embed)
 
     # get bottom users
     @commands.command()
     async def bottomkarma(self, ctx: commands.Context):
-        bottomten: list[int] = sorted(self.users.keys(), key=self.users.get)
-        embed: discord.Embed = discord.Embed(title="Bottom 10 Users by Karma", color=0x8b01e6)
-        for usr in bottomten[:10]:
-            name = await self.bot.fetch_user(usr)
-            embed.add_field(name=name, value=self.users[usr])
+        bottomten: list[int] = sorted(self.users.keys(), key=lambda x: self.users[x])[:10]
+        message = "\n".join([f"{await self.bot.fetch_user(usrid)} : {self.users[usrid]}" for usrid in bottomten])
+        embed: discord.Embed = discord.Embed(title="Bottom 10 Users by Karma", description=message, color=0x8b01e6)
         await ctx.reply(embed=embed)
 
     # track reacts for +/- credits for that user
@@ -113,6 +114,7 @@ class Karma(commands.Cog):
         with open("data/karma.json", "w+") as f:
             json.dump(self.users, f)
 
+    # load the file into memory from disk
     def load_file(self) -> dict[int, int]:
         try:
             with open("data/karma.json", "r") as f:
@@ -129,6 +131,7 @@ class Karma(commands.Cog):
         self.muted.remove(message.author)
         await message.channel.send(f"{message.author.mention} has been unmuted.")
 
+    # cache the file back to disk every minute or so
     @tasks.loop(seconds=60)
     async def write(self):
         if self.modified:
