@@ -5,8 +5,8 @@ import argparse
 
 EXTENSIONS = [
     "cogs.example",
-    "cogs.someone",
     "cogs.karma",
+    "cogs.google"
 ]
 
 intents = discord.Intents.default()
