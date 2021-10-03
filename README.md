@@ -1,13 +1,30 @@
 # CultBot
 
-A discord bot for "The Cult" discord server.
+Node.js rewrite of the original CultBot for Discord.
 
-Contributions are very welcome as the bot doesn't do much ATM and I doubt I'll have time to do it all on my own. Message me (Joey) on discord if you wanna help.
+## Done
+- Google search command
+- Ping command
+- Hello command
 
 ## TODO
+- karma system
 
-- Social Credit System Improvements
-- \search
-- Auto-pin
-- Leaderboard
-- Starboard
+## Deploying
+- Install dependencies with `npm install`
+
+- Create a `.env` file with with the following entries
+```
+DISCORD_TOKEN=[Bot Token]
+CLIENT_ID=[Bot Client ID]
+GUILD_ID=[Primary Guild ID]
+```
+
+- Register slash commands with `npm run commands`
+- Launch bot with `npm start`
+
+## Dependencies
+Install with `npm install`
+- `node v16.8` (Other versions not tested) 
+- `discord.js v13.1.0`
+- `dotenv v10.0.0`
