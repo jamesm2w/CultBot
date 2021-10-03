@@ -146,7 +146,7 @@ client.once("ready", async () => {
     try {
         await sequelize.authenticate();
         console.log("Connected to database");
-        await sequelize.sync({ force: true });
+        await sequelize.sync();
         console.log("Synced Database Model");
 
         client.user.setPresence({ activities: [{ type: "COMPETING", name: "CultBot v2" }], status: "online" });
