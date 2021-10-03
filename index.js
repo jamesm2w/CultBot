@@ -73,6 +73,7 @@ async function changeKarma (user, amount) {
 }
 
 client.on("messageReactionAdd", async (reaction, user) => {
+    if (reaction.message.author.id == user.id) return;
     let karmicImpact = 0;
     if (positive.includes(reaction.emoji.name)) {
         console.log("Add Positive", reaction.emoji.name);
@@ -88,6 +89,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
 });
 
 client.on("messageReactionRemove", async (reaction, user) => {
+    if (reaction.message.author.id == user.id) return;
     let karmicImpact = 0;
     if (positive.includes(reaction.emoji.name)) {
         console.log("Subtract Positive", reaction.emoji.name);

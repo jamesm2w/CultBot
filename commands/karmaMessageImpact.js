@@ -31,7 +31,7 @@ module.exports = {
         if (karma == null) karma = {karma: "no recorded"};
 
 
-        channel.send({ 
+        /*channel.send({ 
             content: `${interaction.user}: Karma Impact:
 This message changed **${message.author.tag}** karma by **${impact}**.
 **${message.author.tag}** now has **${karma.karma}** karma.`, 
@@ -39,9 +39,9 @@ This message changed **${message.author.tag}** karma by **${impact}**.
                 messageReference: interaction.targetId, 
                 failIfNotExists: false 
             } 
-        });
+        });*/
         
         
-        await interaction.reply({ content: "Calculated impact for message below", ephemeral: true});
+        await interaction.reply({ content: "lol this command doesn't work.", ephemeral: true});
     }
 }
