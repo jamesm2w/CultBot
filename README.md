@@ -19,7 +19,14 @@ DISCORD_TOKEN=[Bot Token]
 CLIENT_ID=[Bot Client ID]
 GUILD_ID=[Primary Guild ID]
 ```
-
+- Create a `emojiConfig.json` file with the following structure
+```
+{
+    "positive": [ ],
+    "negative": [ ]
+}
+```
+- Add positive/negative emojis to the arrays as necessary (Use a string of the emoji name, which is the text of custom emojis or the actual emoji for default ones)
 - Register slash commands with `npm run commands`
 - Launch bot with `npm start`
 
