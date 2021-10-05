@@ -4,7 +4,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
     get data() {
         return new SlashCommandBuilder()
-            .setName("bottom")
+            .setName("bottomkarma")
             .setDescription("Get top users by karma")
             .toJSON();
     },

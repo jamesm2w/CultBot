@@ -6,9 +6,11 @@ Node.js rewrite of the original CultBot for Discord.
 - Google search command
 - Ping command
 - Hello command
+- Karma system
 
 ## TODO
-- karma system
+- Karma blacklist
+- Configuration commands
 
 ## Deploying
 - Install dependencies with `npm install`
@@ -35,3 +37,5 @@ Install with `npm install`
 - `node v16.8` (Other versions not tested) 
 - `discord.js v13.1.0`
 - `dotenv v10.0.0`
+- `sequelize v6.6.5`
+- `sqlite3 v4.2.0`
